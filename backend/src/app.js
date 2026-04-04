@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
 
 const agendamentoRoutes = require('./routes/agendamentoRoutes');
 const clienteRoutes = require('./routes/clienteRoutes');
@@ -9,6 +11,7 @@ const authRoutes = require('./routes/authRoutes');
 const { verificarToken } = require('./middlewares/authMiddleware');
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/auth', authRoutes);
 app.use('/agendamentos', verificarToken, agendamentoRoutes);
