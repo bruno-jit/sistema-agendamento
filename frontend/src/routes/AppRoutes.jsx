@@ -14,10 +14,10 @@ export default function AppRoutes() {
     <BrowserRouter>
       <Routes>
 
-        {/* 🔓 Pública */}
+        {/* Pública */}
         <Route path="/" element={<Login />} />
 
-        {/* 🔒 Dashboard */}
+        {/* Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -29,7 +29,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* 👥 Clientes */}
+        {/* Clientes */}
         <Route
           path="/clientes"
           element={
@@ -41,7 +41,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* 📅 Agendamentos */}
+        {/* Agendamentos */}
         <Route
           path="/agendamentos"
           element={
@@ -53,7 +53,7 @@ export default function AppRoutes() {
           }
         />
 
-        {/* 👑 Cadastro de usuários (SÓ ADMIN) */}
+        {/* Cadastro de usuários (SÓ ADMIN) */}
         <Route
           path="/register"
           element={

@@ -38,7 +38,7 @@ export default function Navbar() {
                             </Link>
                         </li>
 
-                        {/* 🔥 Só admin vê */}
+                        {/*admin*/}
                         {isAdmin() && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/register">

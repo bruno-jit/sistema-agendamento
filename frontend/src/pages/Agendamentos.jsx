@@ -13,7 +13,8 @@ const INTERVALO_MINUTOS = 30;
 export default function Agendamentos() {
     const [agendamentos, setAgendamentos] = useState([]);
     const [clientes, setClientes] = useState([]);
-    const [dataSelecionada, setDataSelecionada] = useState('');
+    const hoje = new Date().toISOString().split('T')[0];
+    const [dataSelecionada, setDataSelecionada] = useState(hoje);
     const [clienteId, setClienteId] = useState('');
     const [erro, setErro] = useState('');
 
@@ -31,7 +32,6 @@ export default function Agendamentos() {
         carregarDados();
     }, []);
 
-    // 🔥 gerar horários do dia
     const gerarHorarios = () => {
         const horarios = [];
         for (let h = HORARIO_INICIO; h < HORARIO_FIM; h++) {
@@ -109,11 +109,16 @@ export default function Agendamentos() {
                         onChange={(e) => setClienteId(e.target.value)}
                     >
                         <option value="">Selecione cliente</option>
-                        {clientes.map(c => (
-                            <option key={c.id} value={c.id}>
-                                {c.nome}
-                            </option>
-                        ))}
+
+                        {clientes.length === 0 ? (
+                            <option disabled>Nenhum cliente encontrado</option>
+                        ) : (
+                            clientes.map(c => (
+                                <option key={c.id} value={c.id}>
+                                    {c.nome}
+                                </option>
+                            ))
+                        )}
                     </select>
                 </div>
             </div>

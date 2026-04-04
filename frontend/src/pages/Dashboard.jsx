@@ -5,7 +5,7 @@ export default function Dashboard() {
 
   return (
     <div className="text-center">
-      <h1>Dashboard 🚀</h1>
+      <h1>Dashboard</h1>
       <p>Tipo: {user?.tipo}</p>
     </div>
   );
