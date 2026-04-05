@@ -15,9 +15,17 @@ const getDuracaoServico = async (servico_id) => {
 };
 
 const calcularFim = (inicio, duracao) => {
-  const data = new Date(inicio);
+  const data = new Date(inicio.replace(' ', 'T'));
   data.setMinutes(data.getMinutes() + duracao);
-  return data;
+  
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, '0');
+  const dia = String(data.getDate()).padStart(2, '0');
+  const horas = String(data.getHours()).padStart(2, '0');
+  const minutos = String(data.getMinutes()).padStart(2, '0');
+  const segundos = String(data.getSeconds()).padStart(2, '0');
+  
+  return `${ano}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
 };
 
 const criarAgendamento = async (data) => {
@@ -50,4 +58,18 @@ const listarAgendaPorProfissional = async (profissional_id, data) => {
   return await agendamentoRepository.findByProfissionalAndDate(profissional_id, data);
 };
 
-module.exports = { criarAgendamento, listarAgendaPorProfissional };
+const cancelarAgendamento = async (id) => {
+  if (!id) {
+    throw new Error('ID do agendamento é obrigatório');
+  }
+
+  const agendamentoDeletado = await agendamentoRepository.remove(id);
+
+  if (!agendamentoDeletado) {
+    throw new Error('Agendamento não encontrado ou já excluído');
+  }
+
+  return agendamentoDeletado;
+};
+
+module.exports = { criarAgendamento, listarAgendaPorProfissional, cancelarAgendamento };

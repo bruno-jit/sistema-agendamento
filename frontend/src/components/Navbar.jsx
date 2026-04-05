@@ -37,8 +37,23 @@ export default function Navbar() {
                                 Agendamentos
                             </Link>
                         </li>
+                        {isAdmin() && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/profissionais">
+                                    Profissionais
+                                </Link>
+                            </li>
+                        )}
 
-                        {/*admin*/}
+                        {isAdmin() && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/servicos">
+                                    Serviços
+                                </Link>
+                            </li>
+                        )
+                        }
+
                         {isAdmin() && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/register">

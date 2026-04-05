@@ -5,6 +5,8 @@ import Dashboard from '../pages/Dashboard';
 import Clientes from '../pages/Clientes';
 import Agendamentos from '../pages/Agendamentos';
 import Register from '../pages/Register';
+import Profissionais from '../pages/Profissionais';
+import Servicos from '../pages/Servicos'
 
 import PrivateRoute from './PrivateRoute';
 import MainLayout from '../layouts/MainLayout';
@@ -65,6 +67,27 @@ export default function AppRoutes() {
           }
         />
 
+        {/*Cadastro de profissionais (SÓ ADMIN) */}
+        <Route
+          path="/profissionais"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Profissionais />
+              </MainLayout>
+            </PrivateRoute>}
+        />
+
+        {/*Cadastro de Servicos (SÓ ADMIN) */}
+        <Route
+          path="/servicos"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Servicos />
+              </MainLayout>
+            </PrivateRoute>}
+        />
       </Routes>
     </BrowserRouter>
   );

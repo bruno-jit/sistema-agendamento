@@ -9,6 +9,18 @@ const criar = async (req, res) => {
   }
 };
 
+const cancelar = async (req, res) => {
+  try {
+    const { id } = req.params; 
+    
+    const result = await service.cancelarAgendamento(id);
+    
+    res.json({ mensagem: 'Agendamento cancelado com sucesso', agendamento: result });
+  } catch (e) {
+    res.status(400).json({ erro: e.message });
+  }
+};
+
 const listarAgenda = async (req, res) => {
   try {
     const { profissional_id, data } = req.query;
@@ -21,4 +33,4 @@ const listarAgenda = async (req, res) => {
   }
 };
 
-module.exports = { criar, listarAgenda };
+module.exports = { criar, listarAgenda, cancelar };
